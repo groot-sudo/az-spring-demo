@@ -1,9 +1,9 @@
-name: CI/CD Pipeline - Spring Boot Java 21
+name: CI Pipeline - Spring Boot Java 21
 
 on:
   push:
     branches:
-      - az-spring-demo
+      - main
 
 jobs:
   build:
@@ -19,20 +19,11 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Build with Maven
+      - name: Build with Maven (skip tests)
         run: mvn clean install -DskipTests
 
-      # Optional: Publish JAR artifact
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v3
         with:
           name: springboot-az
-          path: ${{github.workspace}}/target/*.jar
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: springboot-az 
+          path: ${{ github.workspace }}/target/*.jar
