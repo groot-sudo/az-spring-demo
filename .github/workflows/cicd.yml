@@ -23,7 +23,7 @@ jobs:
         run: mvn clean install -DskipTests
 
       - name: Upload JAR artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.0.0
         with:
           name: springboot-az
           path: target/*.jar
