@@ -35,10 +35,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: springboot-az
+          
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: springboot-az
-          credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          slot-name: production
           package: target/*.jar         
