@@ -10,7 +10,7 @@ public class TestController {
 
 	@GetMapping("/test")
 	public String testApplication() {
-		return "Test Successfull and ran !!!";
+		return "New test!!!";
 	}
 	
 }
